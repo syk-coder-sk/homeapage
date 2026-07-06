@@ -30,7 +30,20 @@ header.on{background:rgba(238,243,251,.9);backdrop-filter:blur(10px);box-shadow:
 .top-cta{font-family:var(--px);font-size:.56rem;color:#fff;background:var(--blue);padding:11px 15px;cursor:pointer;text-decoration:none;
   filter:drop-shadow(3px 3px 0 var(--sh));transition:.12s;letter-spacing:.04em;border:none}
 .top-cta:active{transform:translate(2px,2px);filter:drop-shadow(1px 1px 0 var(--sh))}
-
+/* ===== 浮遊するお問い合わせボタン ===== */
+.floating-cta{
+  position:fixed;top:14px;right:22px;z-index:210;
+  font-family:var(--px);font-size:.56rem;color:#fff;background:var(--blue);
+  padding:11px 15px;text-decoration:none;cursor:grab;user-select:none;touch-action:none;
+  border:3px solid var(--ink);letter-spacing:.04em;
+  filter:drop-shadow(4px 4px 0 var(--sh));transition:filter .1s,transform .1s;
+  animation:wig 3s ease-in-out infinite;
+}
+.floating-cta:active{cursor:grabbing}
+.floating-cta.grabbed{filter:drop-shadow(8px 8px 0 var(--sh));transform:scale(1.05);animation:none}
+@media(max-width:560px){
+  .floating-cta{font-size:.5rem;padding:9px 12px;top:12px;right:14px}
+}
 /* ===== STAGE ===== */
 .stage{position:relative;min-height:100vh;overflow:hidden;
   background:radial-gradient(120% 85% at 50% -5%,#dbe8fb 0%,#eef3fb 55%,#f4f7fc 100%)}
