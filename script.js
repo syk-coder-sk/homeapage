@@ -95,9 +95,10 @@ window.resetForm = () => {
   form.style.display = 'block';
 };
 
-// ===== 浮遊お問い合わせボタンをドラッグ =====
+// ===== 浮遊お問い合わせボタン：ドラッグ + セクション到達で非表示 =====
 (function(){
   const cta = document.getElementById('floatCta');
+  const contactSec = document.getElementById('contact');
   if (!cta) return;
 
   let active = false, sx, sy, ox, oy, moved = false;
@@ -115,19 +116,16 @@ window.resetForm = () => {
     const dx = e.clientX - sx, dy = e.clientY - sy;
     if (Math.abs(dx) > 5 || Math.abs(dy) > 5) moved = true;
     let nx = ox + dx, ny = oy + dy;
-    // 画面内に収める
     nx = Math.max(4, Math.min(nx, innerWidth  - cta.offsetWidth  - 4));
     ny = Math.max(4, Math.min(ny, innerHeight - cta.offsetHeight - 4));
     cta.style.left = nx + 'px';
     cta.style.top  = ny + 'px';
-    cta.style.right = 'auto'; // 初期のright指定を解除
+    cta.style.right = 'auto';
   });
   const end = e => {
     if (!active) return;
     cta.classList.remove('grabbed');
-    if (moved) {
-      e.preventDefault(); // ドラッグ後はリンク発火を抑制
-    }
+    if (moved) e.preventDefault();
     active = false;
   };
   cta.addEventListener('pointerup', end);
@@ -135,21 +133,16 @@ window.resetForm = () => {
   cta.addEventListener('click', e => {
     if (moved) { e.preventDefault(); moved = false; }
   });
-})();
 
-// ===== お問い合わせセクションに来たら浮遊ボタンを隠す =====
-(function(){
-  const cta = document.getElementById('floatCta');
-  const contactSec = document.getElementById('contact');
-  if (!cta || !contactSec) return;
-
-  const checkVisible = () => {
-    const rect = contactSec.getBoundingClientRect();
-    const hidden = rect.top < innerHeight * 0.6;
-    cta.classList.toggle('is-hidden', hidden);
-  };
-
-  checkVisible();
-  addEventListener('scroll', checkVisible, { passive: true });
-  addEventListener('resize', checkVisible);
+  // お問い合わせセクションに近づいたら隠す
+  if (contactSec) {
+    const checkVisible = () => {
+      const rect = contactSec.getBoundingClientRect();
+      const hidden = rect.top < innerHeight * 0.6;
+      cta.classList.toggle('is-hidden', hidden);
+    };
+    checkVisible();
+    addEventListener('scroll', checkVisible, { passive: true });
+    addEventListener('resize', checkVisible);
+  }
 })();
