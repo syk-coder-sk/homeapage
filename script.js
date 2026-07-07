@@ -18,10 +18,10 @@ function layout() {
   const w = stage.clientWidth, h = stage.clientHeight;
   const wide = w > 760;
   const pos = wide
-    ? [[12, 26], [68, 20], [20, 68], [72, 64]]
-    : [[8, 20], [52, 16], [10, 72], [54, 68]];
+    ? [[12, 26], [68, 20], [20, 68], [72, 64], [44, 80]]
+    : [[8, 20], [52, 16], [10, 72], [54, 68], [30, 86]];
   btns.forEach((b, i) => {
-    if (b.dataset.moved) return;
+    if (b.dataset.moved) return; // 一度動かしたボタンは動かさない
     const [px, py] = pos[i];
     b.style.left = (w * px / 100) + 'px';
     b.style.top  = (h * py / 100) + 'px';
@@ -94,55 +94,3 @@ window.resetForm = () => {
   document.getElementById('done').classList.remove('show');
   form.style.display = 'block';
 };
-
-// ===== 浮遊お問い合わせボタン：ドラッグ + セクション到達で非表示 =====
-(function(){
-  const cta = document.getElementById('floatCta');
-  const contactSec = document.getElementById('contact');
-  if (!cta) return;
-
-  let active = false, sx, sy, ox, oy, moved = false;
-
-  cta.addEventListener('pointerdown', e => {
-    active = true; moved = false;
-    sx = e.clientX; sy = e.clientY;
-    const r = cta.getBoundingClientRect();
-    ox = r.left; oy = r.top;
-    cta.setPointerCapture(e.pointerId);
-    cta.classList.add('grabbed');
-  });
-  cta.addEventListener('pointermove', e => {
-    if (!active) return;
-    const dx = e.clientX - sx, dy = e.clientY - sy;
-    if (Math.abs(dx) > 5 || Math.abs(dy) > 5) moved = true;
-    let nx = ox + dx, ny = oy + dy;
-    nx = Math.max(4, Math.min(nx, innerWidth  - cta.offsetWidth  - 4));
-    ny = Math.max(4, Math.min(ny, innerHeight - cta.offsetHeight - 4));
-    cta.style.left = nx + 'px';
-    cta.style.top  = ny + 'px';
-    cta.style.right = 'auto';
-  });
-  const end = e => {
-    if (!active) return;
-    cta.classList.remove('grabbed');
-    if (moved) e.preventDefault();
-    active = false;
-  };
-  cta.addEventListener('pointerup', end);
-  cta.addEventListener('pointercancel', end);
-  cta.addEventListener('click', e => {
-    if (moved) { e.preventDefault(); moved = false; }
-  });
-
-  // お問い合わせセクションに近づいたら隠す
-  if (contactSec) {
-    const checkVisible = () => {
-      const rect = contactSec.getBoundingClientRect();
-      const hidden = rect.top < innerHeight * 0.6;
-      cta.classList.toggle('is-hidden', hidden);
-    };
-    checkVisible();
-    addEventListener('scroll', checkVisible, { passive: true });
-    addEventListener('resize', checkVisible);
-  }
-})();

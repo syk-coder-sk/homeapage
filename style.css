@@ -30,25 +30,6 @@ header.on{background:rgba(238,243,251,.9);backdrop-filter:blur(10px);box-shadow:
 .top-cta{font-family:var(--px);font-size:.56rem;color:#fff;background:var(--blue);padding:11px 15px;cursor:pointer;text-decoration:none;
   filter:drop-shadow(3px 3px 0 var(--sh));transition:.12s;letter-spacing:.04em;border:none}
 .top-cta:active{transform:translate(2px,2px);filter:drop-shadow(1px 1px 0 var(--sh))}
-/* ===== 浮遊するお問い合わせボタン ===== */
-.floating-cta{
-  position:fixed;top:14px;right:22px;z-index:210;
-  font-family:var(--px);font-size:.56rem;color:#fff;background:var(--blue);
-  padding:11px 15px;text-decoration:none;cursor:grab;user-select:none;touch-action:none;
-  border:3px solid var(--ink);letter-spacing:.04em;
-  filter:drop-shadow(4px 4px 0 var(--sh));
-  transition:opacity .25s ease, filter .1s, transform .1s;
-  animation:wig 3s ease-in-out infinite;
-}
-.floating-cta:active{cursor:grabbing}
-.floating-cta.grabbed{filter:drop-shadow(8px 8px 0 var(--sh));transform:scale(1.05);animation:none}
-.floating-cta.is-hidden{
-  opacity:0;
-  pointer-events:none;
-}
-@media(max-width:560px){
-  .floating-cta{font-size:.5rem;padding:9px 12px;top:12px;right:14px}
-}
 
 /* ===== STAGE ===== */
 .stage{position:relative;min-height:100vh;overflow:hidden;
@@ -134,6 +115,63 @@ section.blk{padding:100px 0;position:relative}
 .ict p{font-size:.82rem;color:var(--soft)}
 .ict::before,.ict::after{background:var(--teal)}
 
+/* ===== 実績CTAパネル（事業セクション内） ===== */
+.portfolio-cta{
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  margin-top:26px;padding:26px 30px;text-decoration:none;color:inherit;
+  transition:.25s;cursor:pointer;
+}
+.portfolio-cta:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 rgba(31,58,109,.16)}
+.portfolio-cta .pc-kick{font-family:var(--px);font-size:.5rem;color:var(--blue);letter-spacing:.08em;margin-bottom:8px}
+.portfolio-cta h3{font-family:var(--px);font-size:.82rem;color:var(--navy);margin-bottom:8px;line-height:1.6}
+.portfolio-cta p{color:var(--soft);font-size:.88rem;max-width:34em}
+.portfolio-cta .pc-arrow{font-family:var(--en);font-size:1.5rem;color:var(--blue);flex:none;transition:.25s}
+.portfolio-cta:hover .pc-arrow{transform:translateX(6px)}
+@media(max-width:640px){
+  .portfolio-cta{flex-direction:column;align-items:flex-start;gap:14px}
+}
+
+/* ===== 実績ページ（portfolio.html） ===== */
+.pf-hero{padding:130px 0 50px;text-align:center}
+.pf-hero .kkick{justify-content:center}
+.pf-hero h1{font-family:var(--px);font-size:clamp(1.2rem,3.6vw,2rem);color:var(--navy);line-height:1.7;text-shadow:3px 3px 0 #c9d9f2}
+.pf-hero p{color:var(--soft);margin-top:16px;max-width:36em;margin-left:auto;margin-right:auto;font-size:.95rem}
+
+.pf-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--px);font-size:.54rem;color:var(--blue);text-decoration:none;margin-bottom:30px}
+.pf-back:hover{text-decoration:underline}
+
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pf-card{cursor:pointer;overflow:hidden;transition:.25s}
+.pf-card:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 rgba(31,58,109,.16)}
+.pf-thumb{
+  aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  background:repeating-linear-gradient(135deg,#eef3fb,#eef3fb 10px,#e2eaf7 10px,#e2eaf7 20px);
+  border-bottom:2px dashed var(--line);color:var(--soft);
+}
+.pf-thumb svg{width:34px;height:34px;stroke:var(--blue);fill:none;stroke-width:1.6;opacity:.6}
+.pf-thumb span{font-family:var(--px);font-size:.5rem;letter-spacing:.04em}
+.pf-body{padding:18px 20px}
+.pf-cat{display:inline-block;font-family:var(--px);font-size:.46rem;color:var(--blue);border:1.5px solid var(--blue);padding:4px 8px;letter-spacing:.03em;margin-bottom:10px}
+.pf-body h4{font-size:.98rem;font-weight:700;color:var(--text);margin-bottom:6px}
+.pf-body p{font-size:.82rem;color:var(--soft)}
+
+/* ライトボックス */
+.pf-overlay{position:fixed;inset:0;background:rgba(22,35,63,.7);backdrop-filter:blur(4px);z-index:300;display:none;place-items:center;padding:26px}
+.pf-overlay.show{display:grid}
+.pf-overlay .pf-modal{background:#fff;max-width:560px;width:100%;padding:0;position:relative;box-shadow:10px 10px 0 rgba(0,0,0,.3)}
+.pf-overlay .pf-modal-thumb{aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  background:repeating-linear-gradient(135deg,#eef3fb,#eef3fb 10px,#e2eaf7 10px,#e2eaf7 20px);color:var(--soft)}
+.pf-overlay .pf-modal-thumb svg{width:48px;height:48px;stroke:var(--blue);fill:none;stroke-width:1.4;opacity:.6}
+.pf-overlay .pf-modal-thumb span{font-family:var(--px);font-size:.56rem}
+.pf-overlay .pf-modal-body{padding:20px 24px}
+.pf-overlay .pf-modal-body h4{font-size:1.05rem;margin-bottom:8px}
+.pf-overlay .pf-modal-body p{color:var(--soft);font-size:.88rem}
+.pf-overlay .pf-close{position:absolute;top:10px;right:10px;width:34px;height:34px;background:var(--ink);color:#fff;border:none;cursor:pointer;font-family:var(--px);font-size:.6rem}
+
+@media(max-width:900px){
+  .pf-grid{grid-template-columns:1fr 1fr}
+}
+
 .contact{background:radial-gradient(120% 85% at 50% 0%,#dbe8fb,#eef3fb 60%)}
 .cbox{display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:start}
 .cinfo p{color:var(--soft);margin-bottom:20px;font-size:.92rem}
@@ -182,4 +220,6 @@ footer .cr{font-family:var(--px);font-size:.48rem;color:#8ea3cd;margin-top:18px;
   .gbtn .jp{font-size:.74rem}
   .profile th{width:110px;font-size:.5rem}
   section.blk{padding:72px 0}
+  .pf-grid{grid-template-columns:1fr}
+  .pf-hero{padding:100px 0 40px}
 }
