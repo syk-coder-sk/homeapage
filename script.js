@@ -13,13 +13,13 @@ document.querySelectorAll('[data-rv]').forEach(el => io.observe(el));
 const stage = document.getElementById('top');
 const btns = [...document.querySelectorAll('.gbtn')];
 
-// 初期配置（画面幅で切り替え、6ボタン対応）
+// 初期配置（画面幅で切り替え、7ボタン対応）
 function layout() {
   const w = stage.clientWidth, h = stage.clientHeight;
   const wide = w > 760;
   const pos = wide
-    ? [[10, 24], [66, 18], [18, 66], [72, 62], [42, 82], [82, 78]]
-    : [[6, 18], [50, 14], [8, 68], [52, 64], [28, 84], [70, 88]];
+    ? [[10, 24], [66, 18], [18, 66], [72, 62], [42, 82], [82, 78], [6, 88]]
+    : [[6, 18], [50, 14], [8, 68], [52, 64], [28, 84], [70, 88], [8, 94]];
   btns.forEach((b, i) => {
     if (b.dataset.moved) return; // 一度動かしたボタンは動かさない
     const [px, py] = pos[i];
