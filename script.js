@@ -76,6 +76,15 @@ const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 form.addEventListener('submit', e => {
   e.preventDefault();
+
+  // 連続送信のブロック（同じブラウザから60秒以内の再送信を防ぐ）
+  const lastSent = Number(localStorage.getItem('lw_last_sent') || 0);
+  const now = Date.now();
+  if (now - lastSent < 60000) {
+    alert('送信済みです。しばらく経ってから、もう一度お試しください。');
+    return;
+  }
+
   let ok = true;
   const set = (name, valid) => {
     const f = form[name].closest('.fld');
@@ -102,6 +111,7 @@ form.addEventListener('submit', e => {
   })
   .then(res => {
     if (res.ok) {
+      localStorage.setItem('lw_last_sent', String(Date.now()));
       form.style.display = 'none';
       document.getElementById('done').classList.add('show');
     } else {
