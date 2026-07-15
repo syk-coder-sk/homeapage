@@ -6,12 +6,12 @@
 // image が null のあいだは「写真準備中」の枠のまま表示されます。
 // =====================================================================
 const portfolioItems = [
-  { title: "予約システム開発",     cat: "WEBシステム",   desc: "店舗向け予約管理システムの開発事例",     image:"images/Screenshot_2.png" },
+  { title: "予約システム開発",     cat: "WEBシステム",   desc: "店舗向け予約管理システムの開発例",     image:"images/Screenshot_2.png" },
   { title: "会員管理SaaS",         cat: "SaaS",         desc: "クラウド型の会員管理サービス",          image:"images/kaiinKanri.png" },
-  { title: "学校ICT支援",          cat: "ICT事業",      desc: "学校現場でのICT支援員派遣事例",         image:"images/ictSien.png" },
-  { title: "在庫管理システム",     cat: "WEBシステム",   desc: "小売業向け在庫管理システムの開発事例",   image:"images/zaikoKanri.png" },
-  { title: "オンデマンド教材",     cat: "ICT事業",       desc: "動画教材の制作・提供事例",            　image:"images/ondemando.png" },
-  { title: "業務効率化SaaS",       cat: "SaaS",         desc: "既存業務のSaaS化による効率化事例",      image:"images/gyoumuKoritu.png"},
+  { title: "学校ICT支援",          cat: "ICT事業",      desc: "学校現場でのICT支援員派遣例",         image:"images/ictSien.png" },
+  { title: "在庫管理システム",     cat: "WEBシステム",   desc: "小売業向け在庫管理システムの開発例",   image:"images/zaikoKanri.png" },
+  { title: "オンデマンド教材",     cat: "ICT事業",       desc: "動画教材の制作・提供例",            　image:"images/ondemando.png" },
+  { title: "業務効率化SaaS",       cat: "SaaS",         desc: "既存業務のSaaS化による効率化例",      image:"images/gyoumuKoritu.png"},
 ];
 
 const grid = document.getElementById('pfGrid');
