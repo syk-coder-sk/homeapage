@@ -9,7 +9,7 @@ const portfolioItems = [
   { title: "予約システム開発（仮）",     cat: "WEBシステム", desc: "店舗向け予約管理システムの開発事例。写真準備中です。",       image: null },
   { title: "会員管理SaaS（仮）",         cat: "SaaS",         desc: "クラウド型の会員管理サービス。写真準備中です。",           image: null },
   { title: "学校ICT支援（仮）",          cat: "ICT事業",      desc: "学校現場でのICT支援員派遣事例。写真準備中です。",           image: null },
-  { title: "在庫管理システム（仮）",     cat: "WEBシステム", desc: "小売業向け在庫管理システムの開発事例。写真準備中です。",   image:"images/Screenshot_2.png" },
+  { title: "在庫管理システム（仮）",     cat: "WEBシステム", desc: "小売業向け在庫管理システムの開発事例",   image:"images/Screenshot_2.png" },
   { title: "オンデマンド教材（仮）",     cat: "ICT事業",      desc: "動画教材の制作・提供事例。写真準備中です。",               image: null },
   { title: "業務効率化SaaS（仮）",       cat: "SaaS",         desc: "既存業務のSaaS化による効率化事例。写真準備中です。",       image: null },
 ];
